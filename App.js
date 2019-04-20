@@ -5,22 +5,29 @@ import styles from './Styles';
 export default class App extends React.Component {
   componentWillMount(){
     
-  this.state = {
+   this.state = {
+    "clear": false,
     "result": "",
     "keys":[{key:'1'},{key:'2'},{key:'3'},{key:'/'},{key:'4'},{key:'5'},{key:'6'},{key:'-'},{key:'7'},{key:'8'},{key:'9'},{key:'*'},{key:'.'},{key:'0'},{key:'='},{key:'+'}]}
 }
 
 display = (n) =>  {
-  this.setState({"result":this.state.result+n});
+  if (this.state.clear){
+    this.setState({"result":n, "clear": false});
+  } else {
+    this.setState({"result":this.state.result+n});
+  }
+    
 }
 
 equal() {
-  this.setState({"result":eval(this.state.result)});
+  this.setState({"result":eval(this.state.result).toString(), "clear":true});
 }
 
 back() {
   this.setState({"result":this.state.result.slice(0,this.state.result.length-1)});
 }
+
 
 clearall() {
   this.setState({"result":""});
