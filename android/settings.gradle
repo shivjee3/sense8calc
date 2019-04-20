@@ -1,0 +1,3 @@
+rootProject.name = 'sense8calc'
+
+include ':app'
